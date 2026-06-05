@@ -366,9 +366,9 @@ const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
 document.getElementById('yr').textContent=new Date().getFullYear();
 const navLinks=document.querySelector('.nav-links');
-let navOpen=false;
-const openCss='display:flex;position:absolute;top:100%;right:1rem;flex-direction:column;background:var(--bone);padding:1.2rem 1.6rem;border:1px solid var(--line);gap:1.1rem;border-radius:2px;box-shadow:0 20px 40px -24px rgba(23,21,15,.5);';
-document.getElementById('burger').addEventListener('click',()=>{
-  navOpen=!navOpen;navLinks.style.cssText=navOpen?openCss:'';
+const burger=document.getElementById('burger');
+burger.addEventListener('click',()=>{
+  const open=navLinks.classList.toggle('open');
+  burger.setAttribute('aria-expanded',open);
 });
-navLinks.addEventListener('click',e=>{if(e.target.tagName==='A'&&navOpen){navOpen=false;navLinks.style.cssText='';}});
+navLinks.addEventListener('click',e=>{if(e.target.tagName==='A')navLinks.classList.remove('open');});

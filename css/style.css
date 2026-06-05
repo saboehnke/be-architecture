@@ -411,6 +411,15 @@ body::before{
 /* ░░ RESPONSIVE ░░ */
 @media(max-width:900px){
   .nav-links{display:none}
+  .nav-links.open{
+    display:flex;flex-direction:column;gap:1.1rem;
+    position:absolute;top:100%;right:1rem;left:auto;transform:none;
+    background:var(--paper);color:var(--ink);
+    padding:1.2rem 1.6rem;border:1px solid var(--line);border-radius:2px;
+    box-shadow:0 20px 40px -24px rgba(23,21,15,.5);
+  }
+  .nav-links.open a{color:var(--ink)}
+  .nav-links.open .nav-cta{border-color:var(--ink)}
   .nav-burger{display:flex}
   .studio-grid{grid-template-columns:1fr}
   .steps{grid-template-columns:repeat(2,1fr);gap:2rem 1.5rem}

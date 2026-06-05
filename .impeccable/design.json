@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-05T00:00:00.000Z",
+  "title": "Design System: BE Architecture & Landscape",
+  "extensions": {
+    "colorMeta": {
+      "blueprint": { "role": "primary", "displayName": "Blueprint Navy", "canonical": "#0E2A38", "tonalRamp": ["#061620", "#0A2230", "#0E2A38", "#123749", "#1C5168", "#3A7790", "#6BA0B6", "#A7CBDB"] },
+      "ink": { "role": "primary", "displayName": "Warm Ink", "canonical": "#17150F", "tonalRamp": ["#0C0B08", "#17150F", "#2A271D", "#403B2C", "#5A5340", "#7C7460", "#A89F88", "#D6CFBC"] },
+      "accent": { "role": "secondary", "displayName": "Terracotta", "canonical": "#B4552D", "tonalRamp": ["#3D1C0E", "#5C2A15", "#8E3F1F", "#B4552D", "#C66E48", "#D68A6B", "#E5AC95", "#F2D2C4"] },
+      "sage": { "role": "tertiary", "displayName": "Sage", "canonical": "#6E7A5E", "tonalRamp": ["#2C3124", "#414934", "#576045", "#6E7A5E", "#8A9479", "#A7AF98", "#C4CAB9", "#E2E5DB"] },
+      "bone": { "role": "neutral", "displayName": "Bone", "canonical": "#EFE9DD", "tonalRamp": ["#2B271E", "#4A463B", "#6E6857", "#938C77", "#B8B09A", "#D2CAB6", "#EFE9DD", "#F6F2EA"] },
+      "bp-line": { "role": "neutral", "displayName": "Blueprint Line", "canonical": "#9FC3D4", "tonalRamp": ["#1E3A46", "#2F5868", "#46778A", "#6499AE", "#9FC3D4", "#B8D4E0", "#D2E5EC", "#EAF3F7"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero brand lockup = the navbar brand scaled up: 'BE' (Archivo Expanded 900, up to ~15rem) beside a hairline-divided stacked mono descriptor with terracotta ampersand; rises on load. Reserve this scale for the hero mark." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles. Archivo Expanded 800 uppercase." },
+      "title": { "displayName": "Title", "purpose": "Project names on plates and in the lightbox; step headings." },
+      "body": { "displayName": "Body", "purpose": "Prose in Hanken Grotesk 300, capped ~48-75ch." },
+      "label": { "displayName": "Label / Annotation", "purpose": "IBM Plex Mono uppercase, 0.28em tracking. Sheet codes, dimensions, eyebrows, chips." }
+    },
+    "shadows": [
+      { "name": "plate-rest", "value": "0 18px 40px -28px rgba(14,42,56,.7)", "purpose": "Portfolio cards and rail plates at rest; sheet floating just above the table." },
+      { "name": "plate-hover", "value": "0 30px 60px -30px rgba(14,42,56,.9)", "purpose": "Plate hover, paired with -6px translate." },
+      { "name": "rail-plate", "value": "0 26px 50px -30px rgba(14,42,56,.85)", "purpose": "Hero rail plates." },
+      { "name": "lightbox", "value": "0 40px 90px -30px rgba(0,0,0,.7)", "purpose": "Opened drawing lifted over the dimmed field." },
+      { "name": "accent-glow", "value": "0 14px 30px -14px rgba(180,85,45,.7)", "purpose": "Solid button hover glow in terracotta." }
+    ],
+    "motion": [
+      { "name": "ease-house", "value": "cubic-bezier(0.16,1,0.3,1)", "purpose": "Default ease-out for all state transitions, reveals, and lifts." },
+      { "name": "reveal", "value": "opacity 1s, transform 1s (translateY 28px -> 0)", "purpose": "Scroll-triggered section/card entrance via IntersectionObserver adding .in." },
+      { "name": "rail-autoscroll", "value": "~0.035px/ms transform translate, seamless loop", "purpose": "Hero plate rail auto-scroll; pauses on hover, draggable via pointer." },
+      { "name": "counter", "value": "1400ms cubic ease-out count-up", "purpose": "Stat numbers count from 0 on enter." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "900px" },
+      { "name": "sm", "value": "560px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (Solid)",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "Main CTA. Ink pill that turns terracotta and lifts on hover.",
+      "html": "<a class=\"ds-btn-solid\" href=\"#\">View the archive</a>",
+      "css": ".ds-btn-solid{display:inline-block;font-family:'Hanken Grotesk',sans-serif;font-size:.82rem;letter-spacing:.06em;padding:.95rem 1.7rem;border-radius:40px;border:1px solid #17150F;background:#17150F;color:#EFE9DD;text-decoration:none;transition:transform .4s cubic-bezier(.16,1,.3,1),background .4s,box-shadow .4s}.ds-btn-solid:hover{background:#B4552D;border-color:#B4552D;transform:translateY(-3px);box-shadow:0 14px 30px -14px rgba(180,85,45,.7)}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary CTA. Outlined on bone, inverts to ink on hover.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">About the studio</a>",
+      "css": ".ds-btn-ghost{display:inline-block;font-family:'Hanken Grotesk',sans-serif;font-size:.82rem;letter-spacing:.06em;padding:.95rem 1.7rem;border-radius:40px;border:1px solid #17150F;background:transparent;color:#17150F;text-decoration:none;transition:transform .4s cubic-bezier(.16,1,.3,1),background .4s,color .4s}.ds-btn-ghost:hover{background:#17150F;color:#EFE9DD;transform:translateY(-3px)}"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Portfolio discipline filter. Mono uppercase pill; active state fills ink.",
+      "html": "<div style=\"display:flex;gap:.5rem\"><button class=\"ds-chip is-active\">All</button><button class=\"ds-chip\">Landscape</button></div>",
+      "css": ".ds-chip{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;background:none;border:1px solid #C9C0AD;color:#4A463B;padding:.5rem .95rem;border-radius:40px;cursor:pointer;transition:.35s cubic-bezier(.16,1,.3,1)}.ds-chip:hover{border-color:#17150F;color:#17150F}.ds-chip.is-active{background:#17150F;border-color:#17150F;color:#EFE9DD}"
+    },
+    {
+      "name": "Blueprint Plate (Drawing Card)",
+      "kind": "card",
+      "refersTo": "plate-card",
+      "description": "Signature component. A seeded SVG architectural drawing on a navy plate with title block and inset sheet edge.",
+      "html": "<article class=\"ds-plate\"><div class=\"ds-plate-draw\"><svg viewBox=\"0 0 400 300\" fill=\"none\" stroke-linecap=\"round\"><rect x=\"40\" y=\"44\" width=\"300\" height=\"200\" stroke=\"#9FC3D4\" stroke-width=\"2\"/><line x1=\"180\" y1=\"44\" x2=\"180\" y2=\"150\" stroke=\"#9FC3D4\" stroke-width=\"1.4\"/><line x1=\"40\" y1=\"150\" x2=\"180\" y2=\"150\" stroke=\"#9FC3D4\" stroke-width=\"1.4\"/><path d=\"M180 150 L158 150 A22 22 0 0 1 180 128\" stroke=\"rgba(159,195,212,.32)\"/><path d=\"M360 37 L363.5 46 L360 43 L356.5 46 Z\" fill=\"#D98452\"/><text x=\"50\" y=\"288\" fill=\"#9FC3D4\" font-family=\"monospace\" font-size=\"8\" letter-spacing=\"1.5\">PL-218 · FLOOR PLAN</text><text x=\"340\" y=\"288\" text-anchor=\"end\" fill=\"#D98452\" font-family=\"monospace\" font-size=\"8\">PL-218</text></svg></div><div class=\"ds-plate-meta\"><div><h3>Cedar Bluff House</h3><span>San Juan Islands, WA</span></div><span class=\"ds-plate-yr\">2023</span></div></article>",
+      "css": ".ds-plate{width:340px;background:#0E2A38;border-radius:2px;overflow:hidden;position:relative;box-shadow:0 18px 40px -28px rgba(14,42,56,.7);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s}.ds-plate:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(14,42,56,.9)}.ds-plate-draw{position:relative;aspect-ratio:16/11;padding:1.4rem;background:radial-gradient(120% 120% at 50% 0%,#123749,#0E2A38)}.ds-plate-draw::after{content:'';position:absolute;inset:.7rem;border:1px solid rgba(159,195,212,.2)}.ds-plate-draw svg{width:100%;height:100%}.ds-plate-meta{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;padding:1.1rem 1.3rem 1.3rem;border-top:1px solid rgba(159,195,212,.18)}.ds-plate-meta h3{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:1.1rem;line-height:1.04;color:#EAF3F7;margin:0}.ds-plate-meta span{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#9FC3D4}.ds-plate-yr{white-space:nowrap}"
+    },
+    {
+      "name": "Navigation (scrolled)",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Fixed header; gains blurred bone background and hairline border on scroll.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-brand\"><span class=\"ds-brand-mark\">BE</span><span class=\"ds-brand-sub\">Architecture<br>&amp;Landscape</span></a><nav class=\"ds-nav-links\"><a>Work</a><a>Studio</a><a class=\"ds-nav-cta\">Enquire</a></nav></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:.7rem 1.4rem;background:rgba(239,233,221,.82);backdrop-filter:blur(14px);border-bottom:1px solid #C9C0AD}.ds-brand{display:flex;align-items:baseline;gap:.6rem;text-decoration:none;color:#17150F}.ds-brand-mark{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:-.02em}.ds-brand-sub{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#4A463B;border-left:1px solid #C9C0AD;padding-left:.6rem;line-height:1.25}.ds-nav-links{display:flex;align-items:center;gap:2rem}.ds-nav-links a{font-family:'Hanken Grotesk',sans-serif;font-size:.82rem;color:#17150F;text-decoration:none;cursor:pointer}.ds-nav-cta{border:1px solid #17150F;border-radius:40px;padding:.45rem 1.1rem;transition:background .35s,color .35s}.ds-nav-cta:hover{background:#17150F;color:#EFE9DD}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Drafting Table",
+    "overview": "The site behaves like an architect's working sheet, not a marketing page. Every surface inherits the grammar of a drawing: a faint paper grid underfoot, title blocks pinned to the corners of each plate, dimension lines, north arrows, level markers, and sheet codes. The portfolio is not photographed, it is drafted: hand-built SVG floor plans, sections, elevations, site plans, and masterplans rendered as white linework on deep blueprint plates. The drawing is the hero; the chrome around it stays quiet so the linework can shout. Drama comes from precision and scale, not effects: monumental Archivo Expanded uppercase display, navy-drenched hero and contact bands bookending a warm bone body, dense plates throughout.",
+    "keyCharacteristics": [
+      "Drawings, not photos: SVG linework carries every visual.",
+      "Navy-drenched hero and contact bookend a warm bone body: a dark/light/dark rhythm.",
+      "Drafting authenticity: title blocks, dimensions, sheet codes, north arrows are real, not decorative.",
+      "Monumental expanded-grotesque display in uppercase against monospaced technical annotation.",
+      "One accent (terracotta), used sparingly as a draftsman's red-pencil mark."
+    ],
+    "rules": [
+      { "name": "The Red-Pencil Rule", "body": "Terracotta is the architect's correction pencil: it appears on roughly 10% of any screen and never as a fill behind text.", "section": "colors" },
+      { "name": "The Two-Worlds Rule", "body": "Two grounds only: warm bone (the body) and blueprint navy (plates plus the drenched hero and contact bands). Drawings never sit on bone; light type carries the navy bands, dark type the bone body.", "section": "colors" },
+      { "name": "The Annotation Rule", "body": "Anything that would be hand-lettered on a real drawing (codes, dimensions, locations, categories) is IBM Plex Mono, uppercase, widely tracked. Human voice is Archivo (headings) or Hanken (prose).", "section": "typography" },
+      { "name": "The Monumental Rule", "body": "Display and headline type is always heavy expanded grotesque in uppercase, sized to dominate its fold. Timid (light, small, sentence-case) headings are off-brand; the one exception is the long studio statement, which keeps the weight but drops the caps.", "section": "typography" },
+      { "name": "The Bookend Rule", "body": "Navy drench is reserved for the hero (first fold) and contact (last fold), each with a worklight radial glow. The middle stays bone. The dark/light/dark rhythm is the structure.", "section": "colors" },
+      { "name": "The Paper-Is-Flat Rule", "body": "The bone ground never casts or receives a shadow. Shadows belong to plates only.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do render every project as hand-built SVG linework on a blueprint plate. The drawing is the hero, always.",
+      "Do keep drafting annotations authentic: real sheet codes, dimensions, north arrows, level markers, mono uppercase, widely tracked.",
+      "Do drive drama through scale, monumental uppercase grotesque display, and the dark/light/dark band rhythm.",
+      "Do confine terracotta to ~10% of a screen as the red-pencil accent.",
+      "Do keep the bone ground flat; reserve shadows for plates so they read as sheets on a table.",
+      "Do cap prose at ~48-75ch and keep body color at Warm Ink / Ink Soft for >=4.5:1 contrast; watch Blueprint Line on navy."
+    ],
+    "donts": [
+      "Don't ship the generic SaaS/AI template: no identical icon-heading-text card grids, no purple gradients, no tiny tracked eyebrows on every section, no hero-metric blocks.",
+      "Don't drift toward the cluttered real-estate / agency look: no stock photography, no badges, no loud repeated CTAs, no dense listings.",
+      "Don't chase brutalist / Y2K trends: no neon, no chaotic grids, no novelty fonts.",
+      "Don't settle into corporate sterility: every screen needs the studio's point of view.",
+      "Don't put prose on a navy ground (outside a title block or contact band) or a drawing on the bone ground.",
+      "Don't use terracotta as a fill behind text, and never use border-left/right >1px as a colored stripe or background-clip:text gradient text."
+    ]
+  }
+}

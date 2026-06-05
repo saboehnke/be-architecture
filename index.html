@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BE · Architecture & Landscape Design</title>
+<meta name="description" content="BE Architecture. Two decades of residential architecture and landscape design: high-end home layouts, site plans, and considered detailing." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<a class="skip" href="#work">Skip to work</a>
+
+<!-- grain + grid overlays -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ░░ NAV ░░ -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand">
+    <span class="brand-mark">BE</span>
+    <span class="brand-sub">Architecture<span class="brand-amp">&amp;</span>Landscape</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#studio">Studio</a>
+    <a href="#process">Process</a>
+    <a href="#contact" class="nav-cta">Enquire</a>
+  </nav>
+  <button class="nav-burger" aria-label="Menu" id="burger"><span></span><span></span></button>
+</header>
+
+<!-- ░░ HERO ░░ -->
+<main id="top">
+<section class="hero">
+  <div class="hero-coords mono">
+    <span>Residential</span><span class="sep">·</span><span>Landscape</span><span class="sep">·</span><span>Masterplanning</span>
+  </div>
+
+  <div class="hero-head hero-lockup">
+    <h1 class="hero-brand">
+      <span class="hero-mark">BE</span>
+      <span class="hero-sub">Architecture<span class="hero-amp">&amp;</span>Landscape</span>
+    </h1>
+    <div class="hero-actions reveal">
+      <a href="#work" class="btn btn-solid">View the archive</a>
+      <a href="#studio" class="btn btn-ghost">About the studio</a>
+    </div>
+  </div>
+
+  <!-- auto-scrolling / draggable plate rail -->
+  <div class="rail-wrap reveal">
+    <div class="rail" id="rail">
+      <!-- plates injected by JS, duplicated for seamless loop -->
+    </div>
+    <p class="rail-hint mono">Drag to explore · {{count}} plates archived</p>
+  </div>
+</section>
+
+<!-- ░░ STUDIO / STATS ░░ -->
+<section class="studio" id="studio">
+  <div class="studio-grid">
+    <div class="studio-lede">
+      <h2 class="reveal">We design the house and the ground it sits in as one continuous idea.</h2>
+    </div>
+    <div class="studio-body reveal">
+      <p>BE is a small architecture and landscape studio working at the seam between
+      built form and terrain. For twenty years we have drawn high-end homes and the
+      gardens, courts and approaches that hold them, never one without the other.</p>
+      <p>Our archive is a record of that practice: plans, sections, planting schedules
+      and site studies, kept by hand and refined in the field.</p>
+    </div>
+  </div>
+  <div class="ledger" aria-label="Studio at a glance">
+    <div class="ledger-cell reveal">
+      <span class="ledger-fig"><span class="stat-num" data-count="20">0</span><span class="ledger-suf">yrs</span></span>
+      <span class="ledger-label">In practice, since 2004</span>
+    </div>
+    <div class="ledger-cell reveal">
+      <span class="ledger-fig"><span class="stat-num" data-count="180">0</span><span class="ledger-suf">+</span></span>
+      <span class="ledger-label">Projects drawn</span>
+    </div>
+    <div class="ledger-cell reveal">
+      <span class="ledger-fig"><span class="stat-num" data-count="9">0</span></span>
+      <span class="ledger-label">Design awards</span>
+    </div>
+    <div class="ledger-cell reveal">
+      <span class="ledger-fig"><span class="stat-num" data-count="14">0</span></span>
+      <span class="ledger-label">Regions built</span>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ PORTFOLIO ░░ -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div>
+      <h2 class="reveal">The Archive</h2>
+    </div>
+    <div class="filters reveal" id="filters">
+      <button class="filter is-active" data-filter="all">All</button>
+      <button class="filter" data-filter="residential">Residential</button>
+      <button class="filter" data-filter="landscape">Landscape</button>
+      <button class="filter" data-filter="interior">Interior</button>
+      <button class="filter" data-filter="masterplan">Masterplan</button>
+    </div>
+  </div>
+
+  <div class="grid" id="grid">
+    <!-- project cards injected by JS -->
+  </div>
+</section>
+
+<!-- ░░ CONTACT ░░ -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <h2 class="reveal">Have a site in mind?<br />Let's draw the first line.</h2>
+    <a href="mailto:brian@be-architecture.com" class="contact-mail reveal">brian@be-architecture.com</a>
+    <div class="contact-meta reveal mono">
+      <span>BE Architecture &amp; Landscape</span>
+      <span>SOUTHERN ILLINOIS & SURROUNDING AREA</span>
+      <span>(618)237-1564</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="foot">
+  <span class="mono">© <span id="yr"></span> BE Architecture</span>
+  <span class="foot-mid">Drawing the line between land &amp; living.</span>
+  <a href="#top" class="mono foot-top">Back to top ↑</a>
+</footer>
+
+<!-- ░░ LIGHTBOX ░░ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project drawing" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">←</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">→</button>
+  <div class="lb-inner" id="lbInner"></div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
